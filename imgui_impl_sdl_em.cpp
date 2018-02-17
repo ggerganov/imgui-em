@@ -14,9 +14,11 @@
 #include "imgui_impl_sdl_em.h"
 
 // SDL,GL3W
-#include <SDL/SDL.h>
-#include <SDL/SDL_syswm.h>
-#include <SDL/SDL_opengl.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_syswm.h>
+#include <SDL2/SDL_opengles2.h>
+
+#include <cstdio>
 
 // Data
 static Uint64       g_Time = 0.0f;
@@ -48,7 +50,7 @@ void ImGui_ImplSdlGL3_RenderDrawLists(ImDrawData* draw_data)
     //GLint last_sampler; glGetIntegerv(GL_SAMPLER_BINDING, &last_sampler);
     GLint last_array_buffer; glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
     GLint last_element_array_buffer; glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &last_element_array_buffer);
-    GLint last_vertex_array; glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
+    //GLint last_vertex_array; glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
     //GLint last_polygon_mode[2]; glGetIntegerv(GL_POLYGON_MODE, last_polygon_mode);
     GLint last_viewport[4]; glGetIntegerv(GL_VIEWPORT, last_viewport);
     GLint last_scissor_box[4]; glGetIntegerv(GL_SCISSOR_BOX, last_scissor_box);
@@ -84,7 +86,7 @@ void ImGui_ImplSdlGL3_RenderDrawLists(ImDrawData* draw_data)
     glUseProgram(g_ShaderHandle);
     glUniform1i(g_AttribLocationTex, 0);
     glUniformMatrix4fv(g_AttribLocationProjMtx, 1, GL_FALSE, &ortho_projection[0][0]);
-    glBindVertexArray(g_VaoHandle);
+    //glBindVertexArray(g_VaoHandle);
     //glBindSampler(0, 0); // Rely on combined texture/sampler state.
 
     for (int n = 0; n < draw_data->CmdListsCount; n++)
@@ -120,7 +122,7 @@ void ImGui_ImplSdlGL3_RenderDrawLists(ImDrawData* draw_data)
     glBindTexture(GL_TEXTURE_2D, last_texture);
     //glBindSampler(0, last_sampler);
     glActiveTexture(last_active_texture);
-    glBindVertexArray(last_vertex_array);
+    ////glBindVertexArray(last_vertex_array);
     glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, last_element_array_buffer);
     glBlendEquationSeparate(last_blend_equation_rgb, last_blend_equation_alpha);
@@ -170,6 +172,7 @@ bool ImGui_ImplSdlGL3_ProcessEvent(SDL_Event* event)
         }
     case SDL_TEXTINPUT:
         {
+            ImGuiIO& io = ImGui::GetIO();
             io.AddInputCharactersUTF8(event->text.text);
             return true;
         }
@@ -220,7 +223,7 @@ bool ImGui_ImplSdlGL3_CreateDeviceObjects()
     GLint last_texture, last_array_buffer, last_vertex_array;
     glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
     glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
-    glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
+    //glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
 
     const GLchar *vertex_shader =
         "uniform mat4 ProjMtx;\n"
@@ -266,8 +269,8 @@ bool ImGui_ImplSdlGL3_CreateDeviceObjects()
     glGenBuffers(1, &g_VboHandle);
     glGenBuffers(1, &g_ElementsHandle);
 
-    glGenVertexArrays(1, &g_VaoHandle);
-    glBindVertexArray(g_VaoHandle);
+    //glGenVertexArrays(1, &g_VaoHandle);
+    //glBindVertexArray(g_VaoHandle);
     glBindBuffer(GL_ARRAY_BUFFER, g_VboHandle);
     glEnableVertexAttribArray(g_AttribLocationPosition);
     glEnableVertexAttribArray(g_AttribLocationUV);
@@ -282,14 +285,14 @@ bool ImGui_ImplSdlGL3_CreateDeviceObjects()
     // Restore modified GL state
     glBindTexture(GL_TEXTURE_2D, last_texture);
     glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer);
-    glBindVertexArray(last_vertex_array);
+    //glBindVertexArray(last_vertex_array);
 
     return true;
 }
 
 void    ImGui_ImplSdlGL3_InvalidateDeviceObjects()
 {
-    if (g_VaoHandle) glDeleteVertexArrays(1, &g_VaoHandle);
+    //if (g_VaoHandle) glDeleteVertexArrays(1, &g_VaoHandle);
     if (g_VboHandle) glDeleteBuffers(1, &g_VboHandle);
     if (g_ElementsHandle) glDeleteBuffers(1, &g_ElementsHandle);
     g_VaoHandle = g_VboHandle = g_ElementsHandle = 0;
