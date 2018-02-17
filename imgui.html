@@ -78,7 +78,7 @@
                 <h1>ImGui</h1>
                 Emscripten port of <a href="https://github.com/ocornut/imgui">https://github.com/ocornut/imgui</a>
             </div>
-            <div id="main">
+            <div id="main-container">
                 <div class="emscripten_border">
                     <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
                 </div>
@@ -99,9 +99,10 @@
         <script type='text/javascript'>
             var Module = {
                 doNotCaptureKeyboard: true,
-                preRun: [ (function() {
+                postRun: [ (function() {
+                    Module.cwrap('setArticleWidth', '', ['number'])(document.getElementById('main-container').offsetWidth);
                 }) ],
-                postRun: [],
+                preRun: [],
                 print: (function() {
                     var element = document.getElementById('output');
                     if (element) element.value = ''; // clear browser cache

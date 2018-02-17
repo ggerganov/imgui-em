@@ -18,8 +18,6 @@
 #include <SDL2/SDL_syswm.h>
 #include <SDL2/SDL_opengles2.h>
 
-#include <cstdio>
-
 // Data
 static Uint64       g_Time = 0.0f;
 static bool         g_MousePressed[3] = { false, false, false };

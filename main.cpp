@@ -23,6 +23,20 @@ static bool show_demo_window = true;
 static bool show_another_window = false;
 static ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
+static int windowSizeX = 980;
+static int windowSizeY = 768;
+
+extern "C" {
+    void setArticleWidth(int w) {
+        if (w <= 0) return;
+
+        windowSizeX = w;
+        printf("Setting SDL window size: %d x %d\n", windowSizeX, windowSizeY);
+
+        SDL_SetWindowSize(window, windowSizeX, windowSizeY);
+    }
+}
+
 void update() {
     // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
     // - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
@@ -104,7 +118,7 @@ int main(int argc, char **argv) {
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
     SDL_DisplayMode current;
     SDL_GetCurrentDisplayMode(0, &current);
-    window = SDL_CreateWindow("ImGui", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 980, 768, SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
+    window = SDL_CreateWindow("ImGui", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowSizeX, windowSizeY, SDL_WINDOW_OPENGL|SDL_WINDOW_RESIZABLE);
     SDL_GLContext glcontext = SDL_GL_CreateContext(window);
     SDL_GL_SetSwapInterval(1); // Enable vsync
 
