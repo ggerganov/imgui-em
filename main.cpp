@@ -102,6 +102,12 @@ void update() {
         ImGui::ShowDemoWindow(&show_demo_window);
     }
 
+    ImGui::SetNextWindowPos(ImVec2(300, 20), ImGuiCond_FirstUseEver);
+    ImGui::Begin("Info");
+    ImGui::Text("This is ImGui's 'docking' branch.");
+    ImGui::Text("See the examples in the Demo window for more info.");
+    ImGui::End();
+
     // Rendering
     glViewport(0, 0, (int)ImGui::GetIO().DisplaySize.x, (int)ImGui::GetIO().DisplaySize.y);
     glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
