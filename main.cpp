@@ -146,6 +146,7 @@ int main(int argc, char **argv) {
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     ImGui_ImplSdlGL3_Init(window);
     //io.NavFlags |= ImGuiNavFlags_EnableKeyboard;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
 
     // Setup style
     ImGui::StyleColorsDark();
