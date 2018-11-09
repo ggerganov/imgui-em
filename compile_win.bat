@@ -6,7 +6,7 @@ echo static const char * BUILD_TIMESTAMP="%mydate%_%mytime%"; > build_timestamp.
 
 em++ -std=c++11 -s USE_SDL=2 ^
     ./main.cpp ./imgui_impl_sdl_em.cpp ./external/imgui/imgui.cpp ./external/imgui/imgui_draw.cpp ^
-    ./external/imgui/imgui_demo.cpp ^
+    ./external/imgui/imgui_widgets.cpp ./external/imgui/imgui_demo.cpp ^
     -o imgui.js ^
     -I ./external/imgui/ ^
     -s "EXPORTED_FUNCTIONS=['_setArticleWidth', '_main']" ^
