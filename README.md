@@ -1,7 +1,9 @@
 # imgui-em
 Emscripten port of ImGui
 
-Example: https://ggerganov.github.io/jekyll/update/2018/02/11/imgui-em.html
+ImGui 'master' branch demo:  https://ggerganov.github.io/jekyll/update/2018/02/11/imgui-em.html
+
+ImGui 'docking' branch demo: https://ggerganov.github.io/jekyll/update/2018/02/11/imgui-em.html?branch=docking
 
 Many thanks to Omar Cornut for the awsome lib https://github.com/ocornut/imgui
 
