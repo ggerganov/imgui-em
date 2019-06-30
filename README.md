@@ -7,6 +7,9 @@ ImGui 'docking' branch demo: https://ggerganov.github.io/jekyll/update/2018/02/1
 
 Many thanks to Omar Cornut for the awsome lib https://github.com/ocornut/imgui
 
+For ImGui over WebSockets check this repo: https://github.com/ggerganov/imgui-ws
+
+
 # Build
 
     $ git clone https://github.com/ggerganov/imgui-em/
