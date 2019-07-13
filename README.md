@@ -1,14 +1,17 @@
 # imgui-em
-Emscripten port of ImGui
+Emscripten port of [Dear ImGui](https://github.com/ocornut/imgui)
 
-ImGui 'master' branch demo:  https://ggerganov.github.io/jekyll/update/2018/02/11/imgui-em.html
+**Note:** This repo is outdated and no longer maintained. Instead, consider using the Emscripten example coming with Dear ImGui.
 
-ImGui 'docking' branch demo: https://ggerganov.github.io/jekyll/update/2018/02/11/imgui-em.html?branch=docking
+For Dear ImGui over WebSockets check this repo: https://github.com/ggerganov/imgui-ws
+
+---
+
+Dear ImGui 'master' branch demo:  https://ggerganov.github.io/jekyll/update/2018/02/11/imgui-em.html
+
+Dear ImGui 'docking' branch demo: https://ggerganov.github.io/jekyll/update/2018/02/11/imgui-em.html?branch=docking
 
 Many thanks to Omar Cornut for the awsome lib https://github.com/ocornut/imgui
-
-For ImGui over WebSockets check this repo: https://github.com/ggerganov/imgui-ws
-
 
 # Build
 
